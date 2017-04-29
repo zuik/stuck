@@ -1,6 +1,8 @@
 from flask import Flask, request
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
+from twilio.twiml.voice_response import VoiceResponse
+
 from defit.classify import define
 
 app = Flask(__name__)
@@ -18,29 +20,18 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         resp = MessagingResponse()
-<<<<<<< HEAD
         resp.message("You want to define: {}".format(words))
     elif (msg.split(" ")[0]).lower() == ('pronounce'):
         resp = VoiceResponse()
         words = msg.split(" ")[1:]
         resp.say(words)
-
-
-=======
-        resp.message("{} = {}".format(words, define(words)))
-<<<<<<< HEAD
     elif msg.split(" ")[0].lower() == 'synonym':
         # code for synonym
+        pass
     elif msg.split(" ")[0].lower() == 'example':
         # code for synonym
-=======
->>>>>>> origin/master
->>>>>>> origin/master
-    return str(resp)
+        pass
 
-@app.route("/")
-def index():
-    return "Hello, world"
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080, host="0.0.0.0")
