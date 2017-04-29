@@ -1,7 +1,7 @@
 from flask import Flask, request
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
-
+from defit.classify import define
 
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         resp = MessagingResponse()
-        resp.message("You want to define: {}".format(words))
+        resp.message("{} = {}".format(words, define(words)))
     return str(resp)
 
 @app.route("/")
