@@ -36,8 +36,12 @@ def sms_handler():
         call = tclient.api.account.calls.create(to=fr_num, from_="+19712703263", url="https://ear-tube-zkn.c9users.io/say?words={}".format(words))
         return str(call.sid)
     elif msg.split(" ")[0].lower() == 'synonym':
-        # code for synonym
-        pass
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        symn = synonym(words)
+        resp = MessagingResponse()
+        resp.message(symn)
+        return str(resp)
     elif msg.split(" ")[0].lower() == 'antonym':
         words = msg.split(" ")[1:]
         words = " ".join(words)
