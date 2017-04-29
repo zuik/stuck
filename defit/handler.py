@@ -19,6 +19,10 @@ def sms_handler():
         words = " ".join(words)
         resp = MessagingResponse()
         resp.message("{} = {}".format(words, define(words)))
+    elif msg.split(" ")[0].lower() == 'synonym':
+        # code for synonym
+    elif msg.split(" ")[0].lower() == 'example':
+        # code for synonym
     return str(resp)
 
 @app.route("/")
