@@ -39,7 +39,7 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         symn = synonym(words)
-        if(df == '404'):
+        if(symn == '404'):
             errormsg = 'Check for typos'
             resp = MessagingResponse()
             resp.message(errormsg)
@@ -51,7 +51,7 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         antm = antonym(words)
-        if(df == '404'):
+        if(antm == '404'):
             errormsg = 'Check for typos'
             resp = MessagingResponse()
             resp.message(errormsg)
@@ -63,7 +63,7 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         ex = example(words)
-        if(df == '404'):
+        if(ex == '404'):
             errormsg = 'Check for typos'
             resp = MessagingResponse()
             resp.message(errormsg)
