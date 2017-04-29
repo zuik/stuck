@@ -21,6 +21,10 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         df = define(words)
+        if(df = '404')
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message("{}: {}".format(words, errormsg))
         pos = ""
         resp = MessagingResponse()
         resp.message("{} ({}): {}".format(words, pos, df))
