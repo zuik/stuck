@@ -21,9 +21,14 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         df = define(words)
-        pos = ""
-        resp = MessagingResponse()
-        resp.message("{} ({}): {}".format(words, pos, df))
+        if(df == '404')
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message("{}: {}".format(words, errormsg))
+        else:
+            pos = ""
+            resp = MessagingResponse()
+            resp.message("{} ({}): {}".format(words, pos, df))
         return str(resp)
     elif (msg.split(" ")[0]).lower() == ('pronounce'):
         words = msg.split(" ")[1]
