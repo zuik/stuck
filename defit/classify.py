@@ -13,7 +13,6 @@ def define(word, language='en'):
     r = requests.get(url, headers={'app_id': APP_ID, 'app_key': APP_KEY})
     if (r.status_code != 404):
         df = r.json()
-        arr =[]
         length = len(df["results"][0]["lexicalEntries"])
         string = "\n"
         for i in range(0,length):
@@ -52,6 +51,18 @@ def antonym(word, language='en'):
                 atms.append(i[0]['text'])
     return json.dumps(atms)
 
+def example(word, language="en"):
+    url = "{}{}/{}".format(OXFORD_API_ROOT, language, word.lower())
+    r = requests.get(url, headers={'app_id': APP_ID, 'app_key': APP_KEY})
+    df = r.json()
+    length = len(df["results"][0]["lexicalEntries"])
+    string = "\n"
+    for i in range(0, length):
+        string = string + str(i + 1) + ". " + df["results"][0]["lexicalEntries"][i]["entries"][0]["senses"][0]["examples"][0]["text"] + "\n"
+    return string
+
 
 if __name__ == "__main__":
     print(antonym("love"))
+
+print(example("word"))
