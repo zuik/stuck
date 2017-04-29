@@ -15,16 +15,14 @@ def define(word, language='en'):
         df = r.json()
         arr =[]
         length = len(df["results"][0]["lexicalEntries"])
+        string = "\n"
         for i in range(0,length):
-            arr.append(df["results"][0]["lexicalEntries"][i]["entries"][0]["senses"][0]["definitions"][0])
-        string = ""
-        for j in range(0,len(arr)):
-            string = string + "def " + str(j+1)+ ": " + arr[j] + "\n"
+            string = string + str(i+1) +". " +"("+df["results"][0]["lexicalEntries"][i]["lexicalCategory"]+") "+ df["results"][0]["lexicalEntries"][i]["entries"][0]["senses"][0]["definitions"][0]+"\n"
         return string
     else:
         return "404"
 
-def synonym(word, language='en',type="origin"):
+def synonym(word, language='en'):
     url = "{}{}/{}/{}".format(OXFORD_API_ROOT, language, word.lower(),"synonyms")
     r = requests.get(url, headers={'app_id': APP_ID, 'app_key': APP_KEY})
     df = r.json()
