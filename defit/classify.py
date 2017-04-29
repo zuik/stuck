@@ -20,12 +20,5 @@ def define(word, language='en'):
         string  = string + "def " + str(j+1)+ ": " + arr[j] + "\n"
     return string
 
-#def synonym(word, language = 'en'):
-
-<<<<<<< Updated upstream
-#print(define("hypocrite"))
-
-=======
-
 print(define("break"))
->>>>>>> Stashed changes
+
