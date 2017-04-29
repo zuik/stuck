@@ -12,9 +12,13 @@ tclient = Client(TSID, TTOKEN)
 
 @app.route("/sms", methods=['POST'])
 def sms_handler():
-    print(request.form['Body'])
-    resp = MessagingResponse()
-    resp.message("Blah blah")
+    msg = request.form['Body']
+    fr_num = request.form['From']
+    if msg.split(" ")[0] == 'define':
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        resp = MessagingResponse()
+        resp.message("You want to define: {}".format(words))
     return str(resp)
 
 @app.route("/")
