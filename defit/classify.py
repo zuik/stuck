@@ -11,15 +11,18 @@ OXFORD_API_ROOT = "https://od-api.oxforddictionaries.com:443/api/v1/entries/"
 def define(word, language='en'):
     url = "{}{}/{}".format(OXFORD_API_ROOT,language, word.lower())
     r = requests.get(url, headers={'app_id': APP_ID, 'app_key': APP_KEY})
-    df = r.json()
-    arr =[]
-    length = len(df["results"][0]["lexicalEntries"])
-    for i in range(0,length):
-        arr.append(df["results"][0]["lexicalEntries"][i]["entries"][0]["senses"][0]["definitions"][0])
-    string = ""
-    for j in range(0,len(arr)):
-        string  = string + "def " + str(j+1)+ ": " + arr[j] + "\n"
-    return string
+    if (r.status_code != 404):
+        df = r.json()
+        arr =[]
+        length = len(df["results"][0]["lexicalEntries"])
+        for i in range(0,length):
+            arr.append(df["results"][0]["lexicalEntries"][i]["entries"][0]["senses"][0]["definitions"][0])
+        string = ""
+        for j in range(0,len(arr)):
+            string = string + "def " + str(j+1)+ ": " + arr[j] + "\n"
+        return string
+    else:
+        return "404"
 
 def synonym(word, language='en',type="origin"):
     url = "{}{}/{}/{}".format(OXFORD_API_ROOT, language, word.lower(),"synonyms")
@@ -34,5 +37,7 @@ def synonym(word, language='en',type="origin"):
         string = string + str(j+1) + ": "+arr[j]+"\n"
     return string
 
-print(synonym("play"))
+
+
+print(define("uoiuer"))
 
