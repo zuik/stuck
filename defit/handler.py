@@ -19,10 +19,11 @@ def sms_handler():
         words = " ".join(words)
         resp = MessagingResponse()
         resp.message("You want to define: {}".format(words))
-    elif msg.split(" ")[0] == 'pronounce':
+    elif (msg.split(" ")[0]).lower() == ('pronounce'):
         resp = VoiceResponse()
         words = msg.split(" ")[1:]
         resp.say(words)
+
 
     return str(resp)
 
