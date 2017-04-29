@@ -18,11 +18,24 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         resp = MessagingResponse()
+<<<<<<< HEAD
+        resp.message("You want to define: {}".format(words))
+    elif (msg.split(" ")[0]).lower() == ('pronounce'):
+        resp = VoiceResponse()
+        words = msg.split(" ")[1:]
+        resp.say(words)
+
+
+=======
         resp.message("{} = {}".format(words, define(words)))
+<<<<<<< HEAD
     elif msg.split(" ")[0].lower() == 'synonym':
         # code for synonym
     elif msg.split(" ")[0].lower() == 'example':
         # code for synonym
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
     return str(resp)
 
 @app.route("/")
