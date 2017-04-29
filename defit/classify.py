@@ -1,4 +1,3 @@
-
 import json
 import requests
 
@@ -16,4 +15,5 @@ def define(word, language='en'):
     return dff
 
 
-print(define("hypocrite"))
+#print(define("hypocrite"))
+
