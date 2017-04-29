@@ -50,7 +50,12 @@ def sms_handler():
         resp.message(antm)
         return str(resp)
     elif msg.split(" ")[0].lower() == 'example':
-        pass
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        ex = example(words)
+        resp = MessagingResponse()
+        resp.message(ex)
+        return str(resp)
     return "Hlah"
 
 @app.route("/say", methods=['GET', 'POST'])
