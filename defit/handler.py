@@ -35,18 +35,7 @@ def sms_handler():
         call = tclient.api.account.calls.create(to=fr_num, from_="+19712703263", url="https://ear-tube-zkn.c9users.io/say?words={}".format(words))
         return str(call.sid)
     elif msg.split(" ")[0].lower() == 'synonym':
-        words = msg.split(" ")[1:]
-        words = " ".join(words)
-        sf = synonym(words)
-        if(df == '404')
-            errormsg = 'Check for typos'
-            resp = MessagingResponse()
-            resp.message("{}: {}".format(words, errormsg))
-        else:
-            pos = ""
-            resp = MessagingResponse()
-            resp.message("{} ({}): {}".format(words, pos, sf))
-        return str(resp)
+        # code for synonym
         pass
     elif msg.split(" ")[0].lower() == 'example':
         # code for synonym
