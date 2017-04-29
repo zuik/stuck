@@ -50,7 +50,7 @@ def antonym(word, language='en'):
                     atms.append(j['text'])
             else:
                 atms.append(i[0]['text'])
-    return json.dumps(atms)
+    return "Antonyms of {}: {}".format(word, ", ".join(atms))
 
 
 if __name__ == "__main__":
