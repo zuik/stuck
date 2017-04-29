@@ -39,22 +39,37 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         symn = synonym(words)
-        resp = MessagingResponse()
-        resp.message(symn)
+        if(df == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(symn)
         return str(resp)
     elif msg.split(" ")[0].lower() == 'antonym':
         words = msg.split(" ")[1:]
         words = " ".join(words)
         antm = antonym(words)
-        resp = MessagingResponse()
-        resp.message(antm)
+        if(df == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(antm)
         return str(resp)
     elif msg.split(" ")[0].lower() == 'example':
         words = msg.split(" ")[1:]
         words = " ".join(words)
         ex = example(words)
-        resp = MessagingResponse()
-        resp.message(ex)
+        if(df == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(ex)
         return str(resp)
     return "Hlah"
 
