@@ -42,7 +42,7 @@ def say():
     words = request.args.get("words")
     resp = """<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="alice" language="en-US">The word is pronounced {}. Repead: {}. {}</Say>
+  <Say voice="alice" language="en-US">The word is pronounced {}. Repeat: {}. {}</Say>
 </Response>""".format(words, words, words)
     print(resp)
     return Response(resp, mimetype="text/xml")
