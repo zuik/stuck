@@ -14,7 +14,7 @@ tclient = Client(TSID, TTOKEN)
 def sms_handler():
     msg = request.form['Body']
     fr_num = request.form['From']
-    if msg.split(" ")[0] == 'define':
+    if msg.split(" ")[0].lower() == 'define':
         words = msg.split(" ")[1:]
         words = " ".join(words)
         resp = MessagingResponse()
