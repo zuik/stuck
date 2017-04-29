@@ -11,13 +11,10 @@ language = 'en'
 
 
 def define(word):
-    url = "{}{}/".format(OXFORD_API_ROOT, language, word.lower())
+    url = "{}{}/{}".format(OXFORD_API_ROOT,language, word.lower())
     r = requests.get(url, headers={'app_id': APP_ID, 'app_key': APP_KEY})
-    defition = ""
-    print("code {}\n".format(r.status_code))
-    print("text \n" + r.text)
-    print("json \n" + json.dumps(r.json()))
-    return definition
+    d= r.json()
+    return d["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"][0]
 
 
-printDEF("gay")
+print(define("hypocrite"))
