@@ -1,4 +1,5 @@
-from flask import Flask, request
+import json
+from flask import Flask, request, Response
 from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
@@ -12,26 +13,39 @@ TTOKEN = "5d19e13da333c40b5919746f06169ecd"
 
 tclient = Client(TSID, TTOKEN)
 
-@app.route("/sms", methods=['POST'])
+@app.route("/sms", methods=['GET','POST'])
 def sms_handler():
     msg = request.form['Body']
     fr_num = request.form['From']
     if msg.split(" ")[0].lower() == 'define':
         words = msg.split(" ")[1:]
         words = " ".join(words)
+        df = define(words)
+        pos = ""
         resp = MessagingResponse()
-        resp.message("You want to define: {}".format(words))
+        resp.message("{} ({}): {}".format(words, pos, df))
+        return str(resp)
     elif (msg.split(" ")[0]).lower() == ('pronounce'):
-        resp = VoiceResponse()
-        words = msg.split(" ")[1:]
-        resp.say(words)
+        words = msg.split(" ")[1]
+        call = tclient.api.account.calls.create(to=fr_num, from_="+19712703263", url="https://ear-tube-zkn.c9users.io/say?words={}".format(words))
+        return str(call.sid)
     elif msg.split(" ")[0].lower() == 'synonym':
         # code for synonym
         pass
     elif msg.split(" ")[0].lower() == 'example':
         # code for synonym
         pass
+    return "Hlah"
 
+@app.route("/say", methods=['GET', 'POST'])
+def say():
+    words = request.args.get("words")
+    resp = """<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say voice="alice" language="en-US">The word is pronounced {}. Repead: {}. {}</Say>
+</Response>""".format(words, words, words)
+    print(resp)
+    return Response(resp, mimetype="text/xml")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080, host="0.0.0.0")
