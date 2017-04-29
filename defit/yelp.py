@@ -1,8 +1,8 @@
 import requests
 from urllib.error import HTTPError
 
-CLIENT_ID = None
-CLIENT_SECRET = None
+CLIENT_ID = "0Xdf4oHsQwS8wkoi0qRd1g"
+CLIENT_SECRET = "M1UMC49hwVpdJe0m3WbHEWg4Vgn6ULAHJYF0pNiecRugIe0bCg2nxcWCXQoGsgoH"
 
 
 def obtain_bearer_token(host, path):
