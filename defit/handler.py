@@ -4,7 +4,7 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
-from classify import define
+from classify import define, antonym, synonym
 
 app = Flask(__name__)
 
@@ -17,11 +17,12 @@ tclient = Client(TSID, TTOKEN)
 def sms_handler():
     msg = request.form['Body']
     fr_num = request.form['From']
+    print(request.form)
     if msg.split(" ")[0].lower() == 'define':
         words = msg.split(" ")[1:]
         words = " ".join(words)
         df = define(words)
-        if(df == '404')
+        if(df == '404'):
             errormsg = 'Check for typos'
             resp = MessagingResponse()
             resp.message("{}: {}".format(words, errormsg))
@@ -35,10 +36,20 @@ def sms_handler():
         call = tclient.api.account.calls.create(to=fr_num, from_="+19712703263", url="https://ear-tube-zkn.c9users.io/say?words={}".format(words))
         return str(call.sid)
     elif msg.split(" ")[0].lower() == 'synonym':
-        # code for synonym
-        pass
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        symn = synonym(words)
+        resp = MessagingResponse()
+        resp.message(symn)
+        return str(resp)
+    elif msg.split(" ")[0].lower() == 'antonym':
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        antm = antonym(words)
+        resp = MessagingResponse()
+        resp.message(antm)
+        return str(resp)
     elif msg.split(" ")[0].lower() == 'example':
-        # code for synonym
         pass
     return "Hlah"
 

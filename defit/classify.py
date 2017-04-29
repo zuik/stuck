@@ -49,7 +49,7 @@ def antonym(word, language='en'):
                     atms.append(j['text'])
             else:
                 atms.append(i[0]['text'])
-    return json.dumps(atms)
+    return "Antonyms of {}: {}".format(word, ", ".join(atms))
 
 def example(word, language="en"):
     url = "{}{}/{}".format(OXFORD_API_ROOT, language, word.lower())
