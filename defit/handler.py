@@ -14,8 +14,6 @@ TTOKEN = "5d19e13da333c40b5919746f06169ecd"
 
 tclient = Client(TSID, TTOKEN)
 
-return "Hlah"
-
 
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_handler():
