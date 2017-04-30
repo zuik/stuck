@@ -5,6 +5,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
 from classify import define, antonym, synonym, example
+from yelp import search
 
 app = Flask(__name__)
 
@@ -71,6 +72,19 @@ def sms_handler():
         else:
             resp = MessagingResponse()
             resp.message(ex)
+        return str(resp)
+    elif msg.split("")[0].lower() == 'food':
+        words = msg.split(" ")[1:]
+        yelpper = search(words[0],words[1])
+        resp = MessagingResponse()
+        resp.message(yelpper)
+        return str(resp)
+    elif msg.lower() == 'help':
+        greeting = 'Options on Def(It)\n'
+        options = 'DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
+        mo_options = 'FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA'
+        resp = MessagingResponse()
+        resp.message(greeting+options+mo_options)
         return str(resp)
     return "Hlah"
 
