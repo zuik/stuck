@@ -89,7 +89,3 @@ def ssearch(query, location):
     bearer_token = obtain_bearer_token(API_HOST, TOKEN_PATH)
     response = search(bearer_token, query, location)
     return response
-
-
-if __name__ == "__main__":
-    print(ssearch("taco","san fransisco, ca"))
