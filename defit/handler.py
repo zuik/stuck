@@ -29,7 +29,7 @@ def sms_handler():
         else:
             pos = ""
             resp = MessagingResponse()
-            resp.message("{} ({}): {}".format(words, pos, df))
+            resp.message("{}: {}".format(words, df))
         return str(resp)
     elif (msg.split(" ")[0]).lower() == ('pronounce'):
         words = msg.split(" ")[1]
