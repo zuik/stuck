@@ -122,9 +122,13 @@ def sms_handler():
     else:
         greeting = "Options on Stuck\n"
         options = "DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
-        mo_options = "FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA"
+        mo_options = "FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA\n"
+        mo_opt = "CLIMATE\n1) Weather: weather name_of_area\n2) Time of Sunset: sunset name_of_area\n3) Time of Sunrise: sunrise name_of_area\n"
+        even_mo_opt = "TRANSLATOR\n1) Translate: translate lang_to_translate_to word_or_phrase\n2) Detect: detec word_or_phrase"
+        w = greeting + options + mo_options + mo_opt + even_mo_opt
         resp = MessagingResponse()
-        resp.message(greeting + options + mo_options)
+        resp.message(w)
+        return str(w)
 
 # import sys
 # from io import StringIO
