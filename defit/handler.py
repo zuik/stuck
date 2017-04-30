@@ -125,9 +125,9 @@ def sms_handler():
         mo_options = "FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA\n"
         mo_opt = "CLIMATE\n1) Weather: weather name_of_area\n2) Time of Sunset: sunset name_of_area\n3) Time of Sunrise: sunrise name_of_area\n"
         even_mo_opt = "TRANSLATOR\n1) Translate: translate lang_to_translate_to word_or_phrase\n2) Detect: detec word_or_phrase"
-        w = greeting + options + mo_options + mo_opt + even_mo_opt
         resp = MessagingResponse()
-        resp.message(w)
+        resp.message(options)
+        resp.message(mo_options)
         return str(resp)
 
 # import sys
