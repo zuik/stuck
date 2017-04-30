@@ -72,7 +72,39 @@ def sms_handler():
             resp = MessagingResponse()
             resp.message(ex)
         return str(resp)
+    elif msg.split(" ")[0].lower() == 'unicorn':
+        resp = MessagingResponse()
+        resp.message("GitHub (exploité sous le nom de GitHub, Inc.) est un service web d'hébergement et de gestion de développement de logiciels, utilisant le logiciel de gestion de versions Git. Ce site est développé en Ruby on Rails et Erlang par Chris Wanstrath, PJ Hyett et Tom Preston-Werner. GitHub propose des comptes professionnels payants, ainsi que des comptes gratuits pour les projets de logiciels libres. Le site assure également un contrôle d'accès et des fonctionnalités destinées à la collaboration comme le suivi des bugs, les demandes de fonctionnalités, la gestion de tâches et un wiki pour chaque projet.")
+        return str(resp)
     return "Hlah"
+
+# import sys
+# from io import StringIO
+# import contextlib
+
+# @contextlib.contextmanager
+# def stdoutIO(stdout=None):
+#     old = sys.stdout
+#     if stdout is None:
+#         stdout = StringIO()
+#     sys.stdout = stdout
+#     yield stdout
+#     sys.stdout = old
+
+# @app.route("/code", methods=['GET', 'POST'])
+# def code():
+#     msg = request.form['Body']
+#     fr_num = request.form['From']
+#     resp = MessagingResponse()
+#     r = ""
+#     with stdoutIO() as s:
+#         exec(msg)
+#         r = s.getvalue()
+#     resp.message(r)
+#     print(resp)
+#     return str(resp)
+    
+
 
 @app.route("/say", methods=['GET', 'POST'])
 def say():
