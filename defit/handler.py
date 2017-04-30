@@ -5,7 +5,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
 from classify import define, antonym, synonym, example
-from yelp import search
+from yelp import ssearch
 
 app = Flask(__name__)
 
@@ -14,7 +14,10 @@ TTOKEN = "5d19e13da333c40b5919746f06169ecd"
 
 tclient = Client(TSID, TTOKEN)
 
-@app.route("/sms", methods=['GET','POST'])
+return "Hlah"
+
+
+@app.route("/sms", methods=['GET', 'POST'])
 def sms_handler():
     print(request.form)
     msg = request.form['Body']
@@ -74,26 +77,22 @@ def sms_handler():
             resp = MessagingResponse()
             resp.message(ex)
         return str(resp)
-<<<<<<< HEAD
     elif msg.split("")[0].lower() == 'food':
         words = msg.split(" ")[1:]
-        yelpper = search(words[0],words[1])
+        yelpper = ssearch(words[0], words[1])
         resp = MessagingResponse()
         resp.message(yelpper)
         return str(resp)
-    else:
-        greeting = 'Options on Stuck\n'
-        options = 'DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
-        mo_options = 'FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA'
-        resp = MessagingResponse()
-        resp.message(greeting+options+mo_options)
-=======
     elif msg.split(" ")[0].lower() == 'unicorn':
         resp = MessagingResponse()
         resp.message("GitHub (exploité sous le nom de GitHub, Inc.) est un service web d'hébergement et de gestion de développement de logiciels, utilisant le logiciel de gestion de versions Git. Ce site est développé en Ruby on Rails et Erlang par Chris Wanstrath, PJ Hyett et Tom Preston-Werner. GitHub propose des comptes professionnels payants, ainsi que des comptes gratuits pour les projets de logiciels libres. Le site assure également un contrôle d'accès et des fonctionnalités destinées à la collaboration comme le suivi des bugs, les demandes de fonctionnalités, la gestion de tâches et un wiki pour chaque projet.")
->>>>>>> origin/master
         return str(resp)
-    return "Hlah"
+    else:
+        greeting = "Options on Stuck\n"
+        options = "DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
+        mo_options = "FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA"
+        resp = MessagingResponse()
+        resp.message(greeting + options + mo_options)
 
 # import sys
 # from io import StringIO

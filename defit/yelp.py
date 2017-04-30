@@ -88,4 +88,12 @@ def obtain_bearer_token(host, path):
 def ssearch(query, location):
     bearer_token = obtain_bearer_token(API_HOST, TOKEN_PATH)
     response = search(bearer_token, query, location)
-    return response
+    resps = ""
+    for place in response['businesses']:
+        name = place['name']
+        price = place['price']
+        address = ", ".join(place['location']['display_address'])
+        rating = place['rating']
+        phone = place['phone']
+        resps = resps + "{} ({}, {}) {}, {}".format(name, price, rating, address, phone) + "\n"
+    return resps
