@@ -115,8 +115,7 @@ def sms_handler():
         return str(resp)
     elif msg.split(" ")[0].lower() == 'translate':
         words = msg.split(" ")[1:]
-        words = " ".join(words)
-        w = translate_text('en', words)
+        w = translate_text(detect_language(words[0]), " ".join(words[1:]))
         resp = MessagingResponse()
         resp.message(w)
         return str(resp)
