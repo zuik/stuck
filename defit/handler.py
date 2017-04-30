@@ -20,6 +20,7 @@ def sms_handler():
     msg = request.form['Body']
     fr_num = request.form['From']
     print(request.form)
+    allowedOpt = ['define','pronounce','synonym','antonym','food','example']
     if msg.split(" ")[0].lower() == 'define':
         words = msg.split(" ")[1:]
         words = " ".join(words)
@@ -79,7 +80,7 @@ def sms_handler():
         resp = MessagingResponse()
         resp.message(yelpper)
         return str(resp)
-    elif msg.lower() == 'help':
+    elif(!(msg.split(" ")[0].lower() in allowedOpt))
         greeting = 'Options on Def(It)\n'
         options = 'DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
         mo_options = 'FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA'
