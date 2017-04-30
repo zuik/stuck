@@ -6,7 +6,7 @@ from twilio.twiml.voice_response import VoiceResponse
 
 from classify import define, antonym, synonym, example
 from yelp import ssearch
-from weather import weather
+from weather import weather, set_rise
 
 app = Flask(__name__)
 
@@ -89,6 +89,20 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         w = weather(words)
+        resp = MessagingResponse()
+        resp.message(w)
+        return str(resp)
+    elif msg.split(" ")[0].lower() == 'sunset':
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        w = set_rise(words,"sunset")
+        resp = MessagingResponse()
+        resp.message(w)
+        return str(resp)
+    elif msg.split(" ")[0].lower() == 'sunrise':
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        w = set_rise(words,"sunrise")
         resp = MessagingResponse()
         resp.message(w)
         return str(resp)
