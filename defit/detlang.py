@@ -3,13 +3,11 @@ import requests
 import argparse
 from google.cloud import translate
 
-API_KEY = 'AIzaSyBnwNT4Aob5G8iq3u9gG1Wa8gGoptY_inA'
+API_KEY = 'AIzaSyD7CqU__g9DvHC5J9QICO_Ltr5z38ra6BY'
 PRIMARY = 'https://translation.googleapis.com/language/translate/v2/detect'
 
 def detect_language(text):
     """Detects the text's language."""
-    url = "{}?q={}&APPID={}".format(PRIMARY,text, API_KEY)
-    response = requests.get(url)
     translate_client = translate.Client()
 
     # Text can also be a sequence of strings, in which case this method
@@ -26,8 +24,6 @@ def translate_text(target, text):
     Target must be an ISO 639-1 language code.
     See https://g.co/cloud/translate/v2/translate-reference#supported_languages
     """
-    url = "{}?q={}&APPID={}".format(PRIMARY,text, API_KEY)
-    response = requests.get(url)
     translate_client = translate.Client()
 
     if isinstance(text, six.binary_type):
