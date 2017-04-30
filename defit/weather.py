@@ -11,7 +11,7 @@ def weather(location):
     response = requests.get(url)
     df = response.json()
     temp = round(df["main"]["temp"] - 273.15,2)
-    print(temp)
+    return temp
 
 def round_up(x, place):
     return round(x + 5 * 10**(-1 * (place + 1)), place)
