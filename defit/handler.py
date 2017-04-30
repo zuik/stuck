@@ -22,7 +22,6 @@ def sms_handler():
     msg = request.form['Body']
     fr_num = request.form['From']
     print(request.form)
-    allowedOpt = ['define','pronounce','synonym','antonym','food','example']
     if msg.split(" ")[0].lower() == 'define':
         words = msg.split(" ")[1:]
         words = " ".join(words)
