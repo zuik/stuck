@@ -29,7 +29,7 @@ def translate_text(target, text):
     })
     if response.status_code == 200:
         result = response.json()
-        return result
+        return result['data']['translations'][0]['translatedText']
         # translate_client = translate.Client()
         #
         # if isinstance(text, six.binary_type):

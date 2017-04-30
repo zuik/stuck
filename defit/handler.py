@@ -6,7 +6,7 @@ from twilio.twiml.voice_response import VoiceResponse
 
 from classify import define, antonym, synonym, example
 from yelp import ssearch
-from weather import weather, set_risef
+from weather import weather, set_rise
 from detlang import detect_language, translate_text
 app = Flask(__name__)
 
