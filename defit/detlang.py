@@ -1,8 +1,15 @@
+import json
+import requests
 import argparse
 from google.cloud import translate
 
+API_KEY = 'AIzaSyBnwNT4Aob5G8iq3u9gG1Wa8gGoptY_inA'
+PRIMARY = 'https://translation.googleapis.com/language/translate/v2/detect'
+
 def detect_language(text):
     """Detects the text's language."""
+    url = "{}?q={}&APPID={}".format(PRIMARY,text, API_KEY)
+    response = requests.get(url)
     translate_client = translate.Client()
 
     # Text can also be a sequence of strings, in which case this method
@@ -14,26 +21,24 @@ def detect_language(text):
     print('Language: {}'.format(result['language']))
 
 
-def list_languages():
-    """Lists all available languages."""
-    translate_client = translate.Client()
-
-    results = translate_client.get_languages()
-
-    for language in results:
-        print(u'{name} ({language})'.format(**language))
-
-
-def list_languages_with_target(target):
-    """Lists all available languages and localizes them to the target language.
+def translate_text(target, text):
+    """Translates text into the target language.
     Target must be an ISO 639-1 language code.
     See https://g.co/cloud/translate/v2/translate-reference#supported_languages
     """
+    url = "{}?q={}&APPID={}".format(PRIMARY,text, API_KEY)
+    response = requests.get(url)
     translate_client = translate.Client()
 
-    results = translate_client.get_languages(target_language=target)
+    if isinstance(text, six.binary_type):
+        text = text.decode('utf-8')
 
-    for language in results:
-        print(u'{name} ({language})'.format(**language))
- detect_language('amie')
- 
+    # Text can also be a sequence of strings, in which case this method
+    # will return a sequence of results for each text.
+    result = translate_client.translate(
+        text, target_language=target)
+
+    print(u'Text: {}'.format(result['input']))
+    print(u'Translation: {}'.format(result['translatedText']))
+    print(u'Detected source language: {}'.format(
+        result['detectedSourceLanguage']))
