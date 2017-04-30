@@ -128,7 +128,7 @@ def sms_handler():
         w = greeting + options + mo_options + mo_opt + even_mo_opt
         resp = MessagingResponse()
         resp.message(w)
-        return str(w)
+        return str(resp)
 
 # import sys
 # from io import StringIO
