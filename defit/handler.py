@@ -76,9 +76,9 @@ def sms_handler():
             resp = MessagingResponse()
             resp.message(ex)
         return str(resp)
-    elif msg.split("")[0].lower() == 'food':
+    elif msg.split(" ")[0].lower() == 'food':
         words = msg.split(" ")[1:]
-        yelpper = ssearch(words[0], words[1])
+        yelpper = ssearch(words[0], " ".join(words[1:]))
         resp = MessagingResponse()
         resp.message(yelpper)
         return str(resp)
