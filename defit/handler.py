@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import json
 from flask import Flask, request, Response
 from twilio.rest import Client
@@ -5,6 +6,14 @@ from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
 from classify import define, antonym, synonym, example
+=======
+import sys, os
+sys.path.append(os.getcwd())
+from flask import Flask, request
+from twilio.rest import Client
+from twilio.twiml.messaging_response import MessagingResponse
+from classify import define
+>>>>>>> Stashed changes
 
 app = Flask(__name__)
 
@@ -15,6 +24,7 @@ tclient = Client(TSID, TTOKEN)
 
 @app.route("/sms", methods=['GET','POST'])
 def sms_handler():
+    print(request.form)
     msg = request.form['Body']
     fr_num = request.form['From']
     print(request.form)
@@ -62,6 +72,7 @@ def sms_handler():
     elif msg.split(" ")[0].lower() == 'example':
         words = msg.split(" ")[1:]
         words = " ".join(words)
+<<<<<<< Updated upstream
         ex = example(words)
         if(ex == '404'):
             errormsg = 'Check for typos'
@@ -72,6 +83,11 @@ def sms_handler():
             resp.message(ex)
         return str(resp)
     return "Hlah"
+=======
+        resp = MessagingResponse()
+        resp.message("{} = {}".format(words, define(words)))
+    return "Lol"
+>>>>>>> Stashed changes
 
 @app.route("/say", methods=['GET', 'POST'])
 def say():
