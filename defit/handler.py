@@ -4,7 +4,7 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.twiml.voice_response import VoiceResponse
 
-from classify import define, antonym, synonym
+from classify import define, antonym, synonym, example
 
 app = Flask(__name__)
 
@@ -39,18 +39,38 @@ def sms_handler():
         words = msg.split(" ")[1:]
         words = " ".join(words)
         symn = synonym(words)
-        resp = MessagingResponse()
-        resp.message(symn)
+        if(symn == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(symn)
         return str(resp)
     elif msg.split(" ")[0].lower() == 'antonym':
         words = msg.split(" ")[1:]
         words = " ".join(words)
         antm = antonym(words)
-        resp = MessagingResponse()
-        resp.message(antm)
+        if(antm == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(antm)
         return str(resp)
     elif msg.split(" ")[0].lower() == 'example':
-        pass
+        words = msg.split(" ")[1:]
+        words = " ".join(words)
+        ex = example(words)
+        if(ex == '404'):
+            errormsg = 'Check for typos'
+            resp = MessagingResponse()
+            resp.message(errormsg)
+        else:
+            resp = MessagingResponse()
+            resp.message(ex)
+        return str(resp)
     return "Hlah"
 
 @app.route("/say", methods=['GET', 'POST'])
