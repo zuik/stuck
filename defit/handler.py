@@ -121,10 +121,10 @@ def sms_handler():
         return str(resp)
     else:
         greeting = "Options on Stuck\n"
-        options = "DICTIONARY\n1) Definition: define name_of_word\n 2) Pronounciation: pronounce name_of_word\n3) Synonyms: synonym name_of_word\n4) Antonyms: antonym name_of_word\n5) Example sentence: example name_of_word\n"
+        options = "DICTIONARY\n1) Definition: \ndefine name_of_word\n 2) Pronounciation: \npronounce name_of_word\n3) Synonyms: \nsynonym name_of_word\n4) Antonyms: \nantonym name_of_word\n5) Example sentence: \nexample name_of_word\n"
         mo_options = "FOOD SUGGESTIONS\nfood name_of_food area\nExample: \nfood tacos Boston,MA\n"
-        mo_opt = "CLIMATE\n1) Weather: weather name_of_area\n2) Time of Sunset: sunset name_of_area\n3) Time of Sunrise: sunrise name_of_area\n"
-        even_mo_opt = "TRANSLATOR\n1) Translate: translate lang_to_translate_to word_or_phrase\n2) Detect: detec word_or_phrase"
+        mo_opt = "CLIMATE\n1) Weather: \nweather name_of_area\n2) Time of Sunset: \nsunset name_of_area\n3) Time of Sunrise: \nsunrise name_of_area\n"
+        even_mo_opt = "TRANSLATOR\n1) Translate: \ntranslate lang_to_translate_to word_or_phrase\n2) Detect: \ndetec word_or_phrase"
         resp = MessagingResponse()
         resp.message(greeting+options)
         resp.message(mo_options)
