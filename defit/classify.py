@@ -71,5 +71,3 @@ def example(word, language="en"):
 
 if __name__ == "__main__":
     print(antonym("love"))
-
-print(example("word"))
