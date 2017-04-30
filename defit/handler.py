@@ -126,8 +126,10 @@ def sms_handler():
         mo_opt = "CLIMATE\n1) Weather: weather name_of_area\n2) Time of Sunset: sunset name_of_area\n3) Time of Sunrise: sunrise name_of_area\n"
         even_mo_opt = "TRANSLATOR\n1) Translate: translate lang_to_translate_to word_or_phrase\n2) Detect: detec word_or_phrase"
         resp = MessagingResponse()
-        resp.message(options)
+        resp.message(greeting+options)
         resp.message(mo_options)
+        resp.message(mo_opt)
+        resp.message(even_mo_opt)
         return str(resp)
 
 # import sys
