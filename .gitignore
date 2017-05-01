@@ -97,3 +97,5 @@ ENV/
 
 /.idea/
 .idea/workspace.xml
+/stuck/config.py
+stuck/config.py
