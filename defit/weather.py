@@ -19,15 +19,19 @@ def set_rise(location, what):
     url = "{}?q={}&APPID={}".format(PRIMARY, location, API_KEY)
     response = requests.get(url)
     df = response.json()
+    print(df)
     long=df["coord"]["lon"]
     lati=df["coord"]["lat"]
     url_sun = "https://api.sunrise-sunset.org/json?lat={}&lng={}".format(str(lati),str(long))
     response_sun = requests.get(url_sun)
     dff = response_sun.json()
+    print(dff)
     if(what == "sunset"):
         return dff["results"]["sunset"]
     else:
         return dff["results"]["sunrise"]
 
-weather("London")
-print(set_rise("Boston","sunset"))
+
+if __name__ == "__main__":
+    # print(weather("London"))
+    print(set_rise("Boston", "sunset"))
